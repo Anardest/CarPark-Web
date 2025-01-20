@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 #TODO: car, driver, trip
 class Car(models.Model):
@@ -6,6 +7,13 @@ class Car(models.Model):
     model_name = models.CharField(max_length=50)
     year = models.IntegerField()
     mileage = models.IntegerField()
+    slug = models.SlugField(unique=True, blank=True)  # Поле для slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.make}-{self.model_name}-{self.year}")
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return f"{self.year} {self.make} {self.model_name}"

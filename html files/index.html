@@ -1,10 +1,45 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CarPark</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+<!--NAVBAR-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">CarPark</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Автомобили</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Водители</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Поездки</a>
+        </li>
+        <li class="nav-item text-bg-success p-1">
+          <a class="nav-link" href="#">Войти</a>
+        </li>
+        <li class="nav-item text-bg-success p-1">
+          <a class="nav-link" href="#">Выйти</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--/NAVBAR-->
 
-{% block title %}
-    Главная страница
-{% endblock %}
-
-{% block content %}
 <!-- Карточки -->
 <div class="container-fluid mt-6" style="margin-top: 2rem;">
   <h1 class="text-center nav-item">Краткие сведения</h1>
@@ -349,5 +384,45 @@
       </div>
   </div>
 </div>
-{% endblock %}
 
+<!-- Footer -->
+<div class="container-fluid mt-6 " style="margin-top: 3rem;">
+      <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Колонка 1: О нас -->
+                <div class="col-md-4 mb-4">
+                    <h5>О нас</h5>
+                    <p>Мы — команда профессионалов, создающая качественные digital-решения для вашего бизнеса.</p>
+                </div>
+
+                <!-- Колонка 2: Быстрые ссылки -->
+                <div class="col-md-4 mb-4">
+                    <h5>Быстрые ссылки</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Главная</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Социальные сети -->
+                <div class="col-md-4 mb-4">
+                    <h5>Мы в соцсетях</h5>
+                    <div class="social-icons">
+                      <a href="https://github.com/Anardest">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="text-center mt-4 pt-3 border-top">
+                <p>&copy; 2023 CarPark. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- /Footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
