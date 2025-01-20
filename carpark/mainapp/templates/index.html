@@ -1,10 +1,404 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CarPark</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+<!--NAVBAR-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">CarPark</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Автомобили</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Водители</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Поездки</a>
+        </li>
+        <li class="nav-item text-bg-success p-1">
+          <a class="nav-link" href="#">Войти</a>
+        </li>
+        <li class="nav-item text-bg-success p-1">
+          <a class="nav-link" href="#">Выйти</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--/NAVBAR-->
 
-</body>
+<!-- Карточки -->
+<div class="container-fluid mt-6" style="margin-top: 2rem;">
+  <h1 class="text-center nav-item">Краткие сведения</h1>
+  <div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Автомобили</h5>
+                <p class="card-text">50</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Водители</h5>
+                <p class="card-text">30</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Всего поездок</h5>
+                <p class="card-text">12</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Средний пробег</h5>
+                <p class="card-text">1500 км</p>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Самая длинная поездка</h5>
+                <p class="card-text">5000 км</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Самая долгая поездка</h5>
+                <p class="card-text">30 часов</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Рекорд поездок</h5>
+                <p class="card-text">12</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Среднее время поездки</h5>
+                <p class="card-text">4 часа</p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Краткие логи -->
+<div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
+  <h1 class="text-center nav-item">Последние Действия</h1>
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Действие</th>
+            <th>Детали</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>2023-10-01</td>
+            <td>Добавлен автомобиль</td>
+            <td>Toyota Camry, 2020</td>
+        </tr>
+        <tr>
+            <td>2023-10-02</td>
+            <td>Создана поездка</td>
+            <td>Водитель: Иван Иванов, Маршрут: Москва - Санкт-Петербург</td>
+        </tr>
+        <tr>
+          <td>2023-10-01</td>
+          <td>Добавлен автомобиль</td>
+          <td>Toyota Camry, 2020</td>
+        </tr>
+        <tr>
+          <td>2023-10-01</td>
+          <td>Добавлен автомобиль</td>
+          <td>Toyota Camry, 2020</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Уведомления -->
+
+<div class="container-fluid" style="margin-top: 2rem;">
+  <h1 class="text-center nav-item">Уведомления</h1>
+  <div class="alert alert-warning" role="alert">
+    <i class="fas fa-exclamation-triangle"></i> 3 автомобиля требуют техобслуживания.
+  </div>
+  <div class="alert alert-warning" role="alert">
+    <i class="fas fa-exclamation-triangle"></i> 3 автомобиля требуют техобслуживания.
+  </div>
+</div>
+
+<div class="container-fluid mt-5">
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Панель вывода</h5>
+        <a href="#" class="btn btn-secondary">Вывести всех водителей</a>
+        <a href="#" class="btn btn-secondary">Вывести все автомобили</a>
+        <a href="#" class="btn btn-secondary">Вывести все поездки</a>
+        <a href="#" class="btn btn-secondary">Скачать логи</a>
+    </div>
+  </div>
+</div>
+
+<!-- Панель управления -->
+<div class="container mt-5">
+  <!-- Раздел "Автомобили" -->
+  <div class="section">
+      <h2>Автомобили</h2>
+      <div class="row">
+          <!-- Карточка для добавления автомобиля -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Добавить автомобиль</h5>
+                      <form id="addCarForm">
+                          <div class="form-group">
+                              <label for="carBrand">Марка</label>
+                              <input type="text" class="form-control" id="carBrand" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="carModel">Модель</label>
+                              <input type="text" class="form-control" id="carModel" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="carYear">Год выпуска</label>
+                              <input type="number" class="form-control" id="carYear" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Добавить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для удаления автомобиля -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Удалить автомобиль</h5>
+                      <form id="deleteCarForm">
+                          <div class="form-group">
+                              <label for="carIdDelete">ID автомобиля</label>
+                              <input type="number" class="form-control" id="carIdDelete" required>
+                          </div>
+                          <button type="submit" class="btn btn-danger">Удалить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для поиска автомобиля по Id -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Найти автомобиль по Id</h5>
+                      <form id="findCarForm">
+                          <div class="form-group">
+                              <label for="carIdFind">ID автомобиля</label>
+                              <input type="number" class="form-control" id="carIdFind" required>
+                          </div>
+                          <button type="submit" class="btn btn-warning">Найти</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Раздел "Водители" -->
+  <div class="section">
+      <h2>Водители</h2>
+      <div class="row">
+          <!-- Карточка для добавления водителя -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Добавить водителя</h5>
+                      <form id="addDriverForm">
+                          <div class="form-group">
+                              <label for="driverName">Имя</label>
+                              <input type="text" class="form-control" id="driverName" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="driverLicense">Номер водительского удостоверения</label>
+                              <input type="text" class="form-control" id="driverLicense" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Добавить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для удаления водителя -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Удалить водителя</h5>
+                      <form id="deleteDriverForm">
+                          <div class="form-group">
+                              <label for="driverIdDelete">ID водителя</label>
+                              <input type="number" class="form-control" id="driverIdDelete" required>
+                          </div>
+                          <button type="submit" class="btn btn-danger">Удалить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для поиска водителя по Id -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Найти водителя по Id</h5>
+                      <form id="findDriverForm">
+                          <div class="form-group">
+                              <label for="driverIdFind">ID водителя</label>
+                              <input type="number" class="form-control" id="driverIdFind" required>
+                          </div>
+                          <button type="submit" class="btn btn-warning">Найти</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Раздел "Поездки" -->
+  <div class="section">
+      <h2>Поездки</h2>
+      <div class="row">
+          <!-- Карточка для добавления поездки -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Добавить поездку</h5>
+                      <form id="addTripForm">
+                          <div class="form-group">
+                              <label for="tripCarId">ID автомобиля</label>
+                              <input type="number" class="form-control" id="tripCarId" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="tripDriverId">ID водителя</label>
+                              <input type="number" class="form-control" id="tripDriverId" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="tripStart">Начало поездки</label>
+                              <input type="datetime-local" class="form-control" id="tripStart" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="tripEnd">Конец поездки</label>
+                              <input type="datetime-local" class="form-control" id="tripEnd" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Добавить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для удаления поездки -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Удалить поездку</h5>
+                      <form id="deleteTripForm">
+                          <div class="form-group">
+                              <label for="tripIdDelete">ID поездки</label>
+                              <input type="number" class="form-control" id="tripIdDelete" required>
+                          </div>
+                          <button type="submit" class="btn btn-danger">Удалить</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Карточка для поиска поездки по Id -->
+          <div class="col-md-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Найти поездку по Id</h5>
+                      <form id="findTripForm">
+                          <div class="form-group">
+                              <label for="tripIdFind">ID поездки</label>
+                              <input type="number" class="form-control" id="tripIdFind" required>
+                          </div>
+                          <button type="submit" class="btn btn-warning">Найти</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="container-fluid mt-6 " style="margin-top: 3rem;">
+      <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Колонка 1: О нас -->
+                <div class="col-md-4 mb-4">
+                    <h5>О нас</h5>
+                    <p>Мы — команда профессионалов, создающая качественные digital-решения для вашего бизнеса.</p>
+                </div>
+
+                <!-- Колонка 2: Быстрые ссылки -->
+                <div class="col-md-4 mb-4">
+                    <h5>Быстрые ссылки</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Главная</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Социальные сети -->
+                <div class="col-md-4 mb-4">
+                    <h5>Мы в соцсетях</h5>
+                    <div class="social-icons">
+                      <a href="https://github.com/Anardest">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Копирайт -->
+            <div class="text-center mt-4 pt-3 border-top">
+                <p>&copy; 2023 CarPark. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- /Footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
 </html>
