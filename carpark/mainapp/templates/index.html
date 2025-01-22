@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Карточки -->
 <div class="container-fluid mt-6" style="margin-top: 2rem;">
   <h1 class="text-center nav-item">Краткие сведения</h1>
@@ -13,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Автомобили</h5>
-                <p class="card-text">50</p>
+                <p class="card-text">{{ total_cars }}</p>
             </div>
         </div>
     </div>
@@ -21,7 +22,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Водители</h5>
-                <p class="card-text">30</p>
+                <p class="card-text">{{ total_drivers }}</p>
             </div>
         </div>
     </div>
@@ -29,7 +30,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Всего поездок</h5>
-                <p class="card-text">12</p>
+                <p class="card-text">{{ total_trips }}</p>
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Средний пробег</h5>
-                <p class="card-text">1500 км</p>
+                <p class="card-text">{{ average_mileage|floatformat:2 }} км</p>
             </div>
         </div>
     </div>
@@ -126,40 +127,176 @@
   </div>
 </div>
 
-<div class="container-fluid mt-5">
+<!-- <div class="container-fluid mt-5">
   <div class="card">
     <div class="card-body">
         <h5 class="card-title">Панель вывода</h5>
-        <a href="#" class="btn btn-secondary">Вывести всех водителей</a>
-        <a href="#" class="btn btn-secondary">Вывести все автомобили</a>
-        <a href="#" class="btn btn-secondary">Вывести все поездки</a>
+        <button id="show-drivers" class="btn btn-secondary">Вывести всех водителей</button>
+        <button id="show-cars" class="btn btn-secondary">Вывести все автомобили</button>
+        <button id="show-trips" class="btn btn-secondary">Вывести все поездки</button>
         <a href="#" class="btn btn-secondary">Скачать логи</a>
     </div>
+    <div id="content"></div>
     <div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
-      <h1 class="text-center nav-item">Автомобили</h1>
-      <table class="table">
-        <thead>
-            <tr>
-                <th>Марка</th>
-                <th>Модель</th>
-                <th>Год</th>
-                <th>Пробег</th>
-            </tr>
-        </thead>
-        <tbody>
-          {% for car in cars %}
-          <tr>
-            <td>{{ car.make }}</td>
-            <td>{{ car.model_name }}</td>
-            <td>{{ car.year }}</td>
-            <td>{{ car.mileage }} км</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <h1 class="text-center nav-item">Автомобили</h1>
+        <table class="table" id="cars-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Марка</th>
+                    <th>Модель</th>
+                    <th>Год</th>
+                    <th>Пробег</th>
+                    <th>Подробно</th>
+                </tr>
+            </thead>
+            <tbody id="cars-table-body">
+                 Сюда будут вставляться строки с данными 
+            </tbody>
+        </table>
+    </div> -->
+    <div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
+        <div class="card">
+            <div class="card-body">
+
+                <h1 class="text-center nav-item">Управление автопарком</h1>
+            
+                <!-- Кнопки для отображения данных -->
+                <button id="show-cars" class="btn btn-primary">Показать автомобили</button>
+                <button id="show-drivers" class="btn btn-primary">Показать водителей</button>
+                <button id="show-trips" class="btn btn-primary">Показать поездки</button>
+            
+                <!-- Таблица для автомобилей -->
+                <table class="table" id="cars-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Марка</th>
+                            <th>Модель</th>
+                            <th>Год</th>
+                            <th>Пробег</th>
+                            <th>Подробно</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cars-table-body">
+                        <!-- Сюда будут вставляться строки с данными -->
+                    </tbody>
+                </table>
+            
+                <!-- Таблица для водителей -->
+                <table class="table" id="drivers-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Дата рождения</th>
+                            <th>Подробно</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drivers-table-body">
+                        <!-- Сюда будут вставляться строки с данными -->
+                    </tbody>
+                </table>
+            
+                <!-- Таблица для поездок -->
+                <table class="table" id="trips-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Водитель</th>
+                            <th>Автомобиль</th>
+                            <th>Начало</th>
+                            <th>Конец</th>
+                            <th>Подробно</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trips-table-body">
+                        <!-- Сюда будут вставляться строки с данными -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+    <script>
+        $(document).ready(function() {
+            // Обработчик для кнопки "Показать автомобили"
+            $('#show-cars').click(function() {
+                $.get('/get_cars/', function(data) {
+                    // Показываем таблицу автомобилей и скрываем остальные
+                    $('#cars-table').show();
+                    $('#drivers-table').hide();
+                    $('#trips-table').hide();
+    
+                    // Очищаем содержимое tbody
+                    $('#cars-table-body').empty();
+    
+                    // Перебираем данные и создаём строки таблицы
+                    data.forEach(function(car) {
+                        let row = `
+                            <tr>
+                                <td>${car.make}</td>
+                                <td>${car.model_name}</td>
+                                <td>${car.year}</td>
+                                <td>${car.mileage} км</td>
+                                <td><a href="/cars/${car.slug}/">Подробнее</a></td>
+                            </tr>
+                        `;
+                        $('#cars-table-body').append(row);
+                    });
+                });
+            });
+    
+            // Обработчик для кнопки "Показать водителей"
+            $('#show-drivers').click(function() {
+                $.get('/get_drivers/', function(data) {
+                    // Показываем таблицу водителей и скрываем остальные
+                    $('#drivers-table').show();
+                    $('#cars-table').hide();
+                    $('#trips-table').hide();
+    
+                    // Очищаем содержимое tbody
+                    $('#drivers-table-body').empty();
+    
+                    // Перебираем данные и создаём строки таблицы
+                    data.forEach(function(driver) {
+                        let row = `
+                            <tr>
+                                <td>${driver.surname}</td>
+                                <td>${driver.name}</td>
+                                <td>${driver.date_of_birth}</td>
+                                <td><a href="/drivers/${driver.slug}/">Подробнее</a></td>
+                            </tr>
+                        `;
+                        $('#drivers-table-body').append(row);
+                    });
+                });
+            });
+    
+            // Обработчик для кнопки "Показать поездки"
+            $('#show-trips').click(function() {
+                $.get('/get_trips/', function(data) {
+                    // Показываем таблицу поездок и скрываем остальные
+                    $('#trips-table').show();
+                    $('#cars-table').hide();
+                    $('#drivers-table').hide();
+    
+                    // Очищаем содержимое tbody
+                    $('#trips-table-body').empty();
+    
+                    // Перебираем данные и создаём строки таблицы
+                    data.forEach(function(trip) {
+                        let row = `
+                            <tr>
+                                <td>${trip.driver_id__surname} ${trip.driver_id__name}</td>
+                                <td>${trip.car_id__make} ${trip.car_id__model_name}</td>
+                                <td>${trip.start_time}</td>
+                                <td>${trip.end_time}</td>
+                                <td><a href="/trips/${trip.slug}/">Подробнее</a></td>
+                            </tr>
+                        `;
+                        $('#trips-table-body').append(row);
+                    });
+                });
+            });
+        });
+    </script>
 
 <!-- Панель управления -->
 <div class="container mt-5">
