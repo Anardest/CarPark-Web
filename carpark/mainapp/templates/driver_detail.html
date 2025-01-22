@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{driver.surname}} {{driver.name}}
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center" style="margin-top: 3rem;">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Имя: {{ driver.name }} {{ driver.surname }}</h1>
+            <p class="card-text">Id: {{ driver.id }}</p>
+            <p class="card-text">Год рождения: {{ driver.date_of_birth }}</p>
+            <p class="card-text">Стаж: {{ driver.experience }}</p>
+            <p class="card-text">Общее количество поездок: {{ trip_count }}</p>
+            <p class="card-text">Slug: {{ driver.slug }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

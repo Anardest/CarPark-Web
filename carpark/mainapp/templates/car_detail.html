@@ -5,15 +5,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h1 class="card-title">Автомобиль: {{ car.make }} {{ car.model_name }}</h1>
-                <p class="card-text">Год выпуска: {{ car.year }}</p>
-                <p class="card-text">Пробег: {{ car.mileage }}</p>
-                <p class="card-text">Slug: {{ car.slug }}</p>
-            </div>
+<div class="d-flex justify-content-center" style="margin-top: 3rem;">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Автомобиль: {{ car.make }} {{ car.model_name }}</h1>
+            <p class="card-text">Id: {{ car.id }}</p>
+            <p class="card-text">Год выпуска: {{ car.year }}</p>
+            <p class="card-text">Пробег: {{ car.mileage }}</p>
+            <p class="card-text">Slug: {{ car.slug }}</p>
         </div>
     </div>
 </div>
