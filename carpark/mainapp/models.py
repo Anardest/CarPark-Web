@@ -1,7 +1,6 @@
 from django.db import models
 from slugify import slugify
 
-#TODO: car, driver, trip
 class Car(models.Model):
     make = models.CharField(max_length=50)
     model_name = models.CharField(max_length=50)
@@ -37,6 +36,8 @@ class Driver(models.Model):
 class Trip(models.Model):
     car_id = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True, blank=True, related_name='trip_as_car')
     driver_id = models.ForeignKey(Driver, on_delete=models.SET_NULL, null=True, blank=True, related_name='trip_as_driver')
+    start_point = models.CharField(max_length=255, default="Unknown")
+    end_point = models.CharField(max_length=255, default="Unknown")
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     distance = models.FloatField()
@@ -45,8 +46,8 @@ class Trip(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             datetime_str = self.start_time.strftime('%Y-%m-%d %H:%M:%S') #Datetime в строку
-            self.slug = slugify(f"{self.car_id}-{self.driver_id}-{datetime_str}")
+            self.slug = slugify(f"{self.start_point}-{self.end_point}-{datetime_str}")
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Поездка с {self.driver_id} в {self.car_id} с {self.start_time} по {self.end_time}"
+        return f"Поездка {self.start_point} - {self.end_point} с {self.driver_id} в {self.car_id}"

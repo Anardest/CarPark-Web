@@ -3,6 +3,7 @@ from .models import Car, Driver, Trip
 from django.db.models import Avg
 from django.http import JsonResponse
 
+# TODO: при добавлении поездки - добавлять пробег машине участнику
 def index(request): #Главная страница
     cars = Car.objects.all() 
 
@@ -39,6 +40,13 @@ def driver_detail(request, slug):
     }
     return render(request, 'driver_detail.html', context)
 
+def trip_detail(request, slug):
+    trip = get_object_or_404(Trip, slug = slug)
+    context = {
+        'trip': trip,
+    }
+    return render(request, 'trip_detail.html', context)
+
 def get_drivers(request):
     drivers = list(Driver.objects.values('id','name','surname','date_of_birth', 'slug'))
     return JsonResponse(drivers, safe=False)
@@ -46,5 +54,5 @@ def get_cars(request):
     cars = list(Car.objects.values('id', 'make', 'model_name', 'year', 'mileage', 'slug'))
     return JsonResponse(cars, safe=False)
 def get_trips(request):
-    trips = list(Trip.objects.values('id','driver_id__name','driver_id__surname', 'car_id__make', 'car_id__model_name', 'start_time', 'end_time','slug'))
+    trips = list(Trip.objects.values('id','start_point', 'end_point','driver_id__name','driver_id__surname', 'car_id__make', 'car_id__model_name', 'start_time', 'end_time','slug'))
     return JsonResponse(trips, safe=False)

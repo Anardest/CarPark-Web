@@ -43,40 +43,6 @@
         </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Самая длинная поездка</h5>
-                <p class="card-text">5000 км</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Самая долгая поездка</h5>
-                <p class="card-text">30 часов</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Рекорд поездок</h5>
-                <p class="card-text">12</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Среднее время поездки</h5>
-                <p class="card-text">4 часа</p>
-            </div>
-        </div>
-    </div>
-  </div>
 </div>
 <ul>
 </ul>
@@ -127,33 +93,6 @@
   </div>
 </div>
 
-<!-- <div class="container-fluid mt-5">
-  <div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Панель вывода</h5>
-        <button id="show-drivers" class="btn btn-secondary">Вывести всех водителей</button>
-        <button id="show-cars" class="btn btn-secondary">Вывести все автомобили</button>
-        <button id="show-trips" class="btn btn-secondary">Вывести все поездки</button>
-        <a href="#" class="btn btn-secondary">Скачать логи</a>
-    </div>
-    <div id="content"></div>
-    <div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
-        <h1 class="text-center nav-item">Автомобили</h1>
-        <table class="table" id="cars-table" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Марка</th>
-                    <th>Модель</th>
-                    <th>Год</th>
-                    <th>Пробег</th>
-                    <th>Подробно</th>
-                </tr>
-            </thead>
-            <tbody id="cars-table-body">
-                 Сюда будут вставляться строки с данными 
-            </tbody>
-        </table>
-    </div> -->
     <div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
         <div class="card">
             <div class="card-body">
@@ -200,6 +139,8 @@
                 <table class="table" id="trips-table" style="display: none;">
                     <thead>
                         <tr>
+                            <th>Начало</th>
+                            <th>Конец</th>
                             <th>Водитель</th>
                             <th>Автомобиль</th>
                             <th>Начало</th>
@@ -284,6 +225,8 @@
                     data.forEach(function(trip) {
                         let row = `
                             <tr>
+                                <td>${trip.start_point}</td>
+                                <td>${trip.end_point}</td>
                                 <td>${trip.driver_id__surname} ${trip.driver_id__name}</td>
                                 <td>${trip.car_id__make} ${trip.car_id__model_name}</td>
                                 <td>${trip.start_time}</td>

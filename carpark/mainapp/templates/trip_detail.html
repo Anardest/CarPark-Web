@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{trip.driver_id}} {{trip.car_id}}
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center" style="margin-top: 3rem;">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Маршрут: {{ trip.start_point }} - {{ trip.end_point }}</h1>
+            <p class="card-text">Id: {{ trip.id }}</p>
+            <p class="card-text">Водитель: {{ trip.driver_id }}</p>
+            <p class="card-text">Автомобиль: {{ trip.car_id }}</p>
+            <p class="card-text">Расстояние: {{ trip.distance }} км</p>
+            <p class="card-text">Начало: {{ trip.start_time }}</p>
+            <p class="card-text">Конец: {{ trip.end_time }}</p>
+            <p class="card-text">Slug: {{ driver.slug }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
