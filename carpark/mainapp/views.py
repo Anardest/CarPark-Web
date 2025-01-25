@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Car, Driver, Trip
 from django.db.models import Avg
 from django.http import JsonResponse
+from django.core.exceptions import ValidationError
+from django.views.decorators.csrf import csrf_exempt
 
 # TODO: при добавлении поездки - добавлять пробег машине участнику
 def index(request): #Главная страница
@@ -56,3 +58,60 @@ def get_cars(request):
 def get_trips(request):
     trips = list(Trip.objects.values('id','start_point', 'end_point','driver_id__name','driver_id__surname', 'car_id__make', 'car_id__model_name', 'start_time', 'end_time','slug'))
     return JsonResponse(trips, safe=False)
+
+@csrf_exempt
+def add_car(request):
+    if request.method == 'POST':
+        try:
+            make = request.POST.get('carMake')
+            model_name = request.POST.get('carModelName')
+            year = request.POST.get('carYear')
+            mileage = request.POST.get('carMileage')
+
+            # Валидация данных
+            if not make or not model_name or not year or not mileage:
+                raise ValidationError('Все поля обязательны для заполнения.')
+
+            # Создаём и сохраняем новый автомобиль
+            Car.objects.create(
+                make=make,
+                model_name=model_name,
+                year=year,
+                mileage=mileage
+            )
+
+            return JsonResponse({'message': 'Данные успешно сохранены!'})
+        except ValidationError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'Ошибка сервера'}, status=500)
+        
+@csrf_exempt
+def add_driver(request):
+    if request.method == 'POST':
+        try:
+            name = request.POST.get('driverName')
+            surname = request.POST.get('driverSurname')
+            date_of_birth = request.POST.get('driverDoB')  # Строка в формате 'YYYY-MM-DD'
+            experience = request.POST.get('driverExp')
+
+            # Отладка
+            print(f"Name: {name}, Surname: {surname}, DoB: {date_of_birth}, Exp: {experience}")
+
+            if not name or not surname or not date_of_birth or not experience:
+                raise ValidationError('Все поля обязательны для заполнения.')
+        
+            Driver.objects.create(
+                name=name,
+                surname=surname,
+                date_of_birth=date_of_birth,  # Передаём строку
+                experience=experience,
+            )
+
+            return JsonResponse({'message': 'Данные успешно сохранены!'})
+        except ValidationError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except Exception as e:
+            print(f"Ошибка: {e}")  # Отладка
+            return JsonResponse({'error': 'Ошибка сервера: ' + str(e)}, status=500)
+        

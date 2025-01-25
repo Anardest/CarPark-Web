@@ -1,5 +1,6 @@
 from django.db import models
 from slugify import slugify
+from datetime import datetime
 
 class Car(models.Model):
     make = models.CharField(max_length=50)
@@ -26,6 +27,10 @@ class Driver(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
+            # Преобразуем строку в объект date, если это необходимо
+            if isinstance(self.date_of_birth, str):
+                self.date_of_birth = datetime.strptime(self.date_of_birth, '%Y-%m-%d').date()
+            # Форматируем дату
             date_str = self.date_of_birth.strftime('%Y-%m-%d')
             self.slug = slugify(f"{self.name}-{self.surname}-{date_str}")
         super().save(*args, **kwargs)

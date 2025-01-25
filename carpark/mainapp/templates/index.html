@@ -243,33 +243,63 @@
 
 <!-- Панель управления -->
 <div class="container mt-5">
-  <!-- Раздел "Автомобили" -->
-  <div class="section">
-      <h2>Автомобили</h2>
-      <div class="row">
-          <!-- Карточка для добавления автомобиля -->
-          <div class="col-md-4">
-              <div class="card">
-                  <div class="card-body">
-                      <h5 class="card-title">Добавить автомобиль</h5>
-                      <form id="addCarForm">
-                          <div class="form-group">
-                              <label for="carBrand">Марка</label>
-                              <input type="text" class="form-control" id="carBrand" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="carModel">Модель</label>
-                              <input type="text" class="form-control" id="carModel" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="carYear">Год выпуска</label>
-                              <input type="number" class="form-control" id="carYear" required>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Добавить</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
+<!-- Раздел "Автомобили" -->
+<div class="section">
+    <h2>Автомобили</h2>
+    <div class="row">
+        <div id="carMessage"></div>
+        <!-- Карточка для добавления автомобиля -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Добавить автомобиль</h5>
+                    <form id="car-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="carBrand">Марка</label>
+                            <input type="text" class="form-control" id="carMake" name="carMake" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="carModel">Модель</label>
+                            <input type="text" class="form-control" id="carModelName" name="carModelName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="carYear">Год выпуска</label>
+                            <input type="number" class="form-control" id="carYear" name="carYear" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="carMileage">Пробег, км</label>
+                            <input type="number" class="form-control" id="carMileage" name="carMileage" required step="0.1">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+$(document).ready(function() {
+    $('#car-form').on('submit', function(event) {
+        event.preventDefault();
+        console.log('Форма отправлена');  // Отладка
+        console.log($(this).serialize());  // Отладка
+
+        $.ajax({
+            url: '/add_car/',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                console.log(response);  // Отладка
+                $('#carMessage').html('<div class="alert alert-success">' + response.message + '</div>');
+                $('#car-form')[0].reset();
+            },
+            error: function(response) {
+                console.log(response);  // Отладка
+                $('#carMessage').html('<div class="alert alert-danger">Ошибка: ' + response.responseJSON.error + '</div>');
+            }
+        });
+    });
+});
+    </script>
 
           <!-- Карточка для удаления автомобиля -->
           <div class="col-md-4">
@@ -305,30 +335,63 @@
       </div>
   </div>
 
-  <!-- Раздел "Водители" -->
-  <div class="section">
-      <h2>Водители</h2>
-      <div class="row">
-          <!-- Карточка для добавления водителя -->
-          <div class="col-md-4">
-              <div class="card">
-                  <div class="card-body">
-                      <h5 class="card-title">Добавить водителя</h5>
-                      <form id="addDriverForm">
-                          <div class="form-group">
-                              <label for="driverName">Имя</label>
-                              <input type="text" class="form-control" id="driverName" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="driverLicense">Номер водительского удостоверения</label>
-                              <input type="text" class="form-control" id="driverLicense" required>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Добавить</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
+<!-- Раздел "Водители" -->
+<div class="section">
+    <h2>Водители</h2>
+    <div class="row">
 
+        <div id="driverMessage"></div>
+
+        <!-- Карточка для добавления водителя -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Добавить водителя</h5>
+                    <form id="driver-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="driverName">Имя</label>
+                            <input type="text" class="form-control" id="driverName" name="driverName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverSurname">Фамилия</label>
+                            <input type="text" class="form-control" id="driverSurname" name="driverSurname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverDoB">Дата рождения</label>
+                            <input type="date" class="form-control" id="driverDoB" name="driverDoB" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverExp">Стаж</label>
+                            <input type="number" class="form-control" id="driverExp" name="driverExp" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+$(document).ready(function() {
+    $('#driver-form').on('submit', function(event) {
+        event.preventDefault();
+        console.log($(this).serialize());  // Отладка: выводим данные формы в консоль браузера
+
+        $.ajax({
+            url: '/add_driver/',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#driverMessage').html('<div class="alert alert-success">' + response.message + '</div>');
+                $('#driver-form')[0].reset();
+            },
+            error: function(response) {
+                console.log(response);  // Отладка: выводим ответ сервера в консоль
+                $('#driverMessage').html('<div class="alert alert-danger">Ошибка: ' + response.responseJSON.error + '</div>');
+            }
+        });
+    });
+});
+        </script>
           <!-- Карточка для удаления водителя -->
           <div class="col-md-4">
               <div class="card">
