@@ -13,6 +13,7 @@
     <script src="{% static 'js/add_driver.js' %}"></script>
     <script src="{% static 'js/add_trip.js' %}"></script>
     <script src="{% static 'js/show.js' %}"></script>
+    <script src="{% static 'js/get_driver_by_id.js' %}"></script>
 {% endblock %}
 <!-- Карточки -->
 <div class="container-fluid mt-6" style="margin-top: 2rem;">
@@ -52,8 +53,6 @@
     </div>
   </div>
 </div>
-<ul>
-</ul>
 <!-- Краткие логи -->
 <div class="container-fluid p-lg-2 mt-6" style="margin-top: 2rem;">
   <h1 class="text-center nav-item">Последние Действия</h1>
@@ -299,16 +298,19 @@
               <div class="card">
                   <div class="card-body">
                       <h5 class="card-title">Найти водителя по Id</h5>
-                      <form id="findDriverForm">
-                          <div class="form-group">
+                          <div class="container">
                               <label for="driverIdFind">ID водителя</label>
                               <input type="number" class="form-control" id="driverIdFind" required>
                           </div>
-                          <button type="submit" class="btn btn-warning">Найти</button>
-                      </form>
+                          <button id="get_driver_by_id" class="btn btn-warning">Найти</button>
                   </div>
               </div>
           </div>
+      </div>
+      <div class="row">
+        <div id="driver_info" class="d-flex justify-content-center" style="margin-top: 3rem;">
+
+        </div>
       </div>
   </div>
 

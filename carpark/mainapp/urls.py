@@ -13,4 +13,6 @@ urlpatterns = [
     # Для Ajax форм
     path('add_car/', views.add_car, name='add_car'),
     path('add_driver/', views.add_driver, name='add_driver'),
+
+    path('get_driver_by_id/<int:driver_id>/', views.get_driver_by_id, name='get_driver_by_id'),
 ]

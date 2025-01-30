@@ -96,7 +96,6 @@ def add_driver(request):
             experience = request.POST.get('driverExp')
 
             # Отладка
-            print(f"Name: {name}, Surname: {surname}, DoB: {date_of_birth}, Exp: {experience}")
 
             if not name or not surname or not date_of_birth or not experience:
                 raise ValidationError('Все поля обязательны для заполнения.')
@@ -112,6 +111,21 @@ def add_driver(request):
         except ValidationError as e:
             return JsonResponse({'error': str(e)}, status=400)
         except Exception as e:
-            print(f"Ошибка: {e}")  # Отладка
             return JsonResponse({'error': 'Ошибка сервера: ' + str(e)}, status=500)
+        
+def get_driver_by_id(request, driver_id):
+    if request.method == 'GET':
+        driver = get_object_or_404(Driver, id=driver_id)
+        trip_count = driver.trip_as_driver.count()
+        data = {
+            'id': driver.id,
+            'name': driver.name,
+            'surname': driver.surname,
+            'experience': driver.experience,
+            'date_of_birth': driver.date_of_birth,
+            'slug': driver.slug,
+            'trip_count': trip_count,
+        }
+        return JsonResponse(data)
+
         
