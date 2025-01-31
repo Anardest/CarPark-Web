@@ -23,7 +23,7 @@ $(document).ready(function () {
                 $('#driver_info').html(driverHtml);
             },
             error: function() {
-                $('#driver_info').html('<p class="text-danger">Водитель не найден</p>');
+                $('#driver_info').html('<div class="alert alert-danger">Ошибка: Водитель не найден</div>');
             }
         });
     });
