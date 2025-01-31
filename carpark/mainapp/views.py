@@ -128,4 +128,17 @@ def get_driver_by_id(request, driver_id):
         }
         return JsonResponse(data)
 
-        
+def get_car_by_id(request, car_id):
+    if request.method == 'GET':
+        car = get_object_or_404(Car, id=car_id)
+        trip_count = car.trip_as_car.count()
+        data = {
+            'id': car.id,
+            'make': car.make,
+            'model_name': car.model_name,
+            'year': car.year,
+            'mileage': car.mileage,
+            'slug': car.slug,
+            'trip_count': trip_count,
+        }
+        return JsonResponse(data)

@@ -15,4 +15,5 @@ urlpatterns = [
     path('add_driver/', views.add_driver, name='add_driver'),
 
     path('get_driver_by_id/<int:driver_id>/', views.get_driver_by_id, name='get_driver_by_id'),
+    path('get_car_by_id/<int:car_id>/', views.get_car_by_id, name='get_car_by_id'),
 ]
