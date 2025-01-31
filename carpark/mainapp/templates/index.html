@@ -14,6 +14,7 @@
     <script src="{% static 'js/add_trip.js' %}"></script>
     <script src="{% static 'js/show.js' %}"></script>
     <script src="{% static 'js/get_driver_by_id.js' %}"></script>
+    <script src="{% static 'js/get_car_by_id.js' %}"></script>
 {% endblock %}
 <!-- Карточки -->
 <div class="container-fluid mt-6" style="margin-top: 2rem;">
@@ -172,7 +173,10 @@
 <div class="section">
     <h2>Автомобили</h2>
     <div class="row">
+
+
         <div id="carMessage"></div>
+
         <!-- Карточка для добавления автомобиля -->
         <div class="col-md-4">
             <div class="card">
@@ -226,16 +230,19 @@
               <div class="card">
                   <div class="card-body">
                       <h5 class="card-title">Найти автомобиль по Id</h5>
-                      <form id="findCarForm">
                           <div class="form-group">
                               <label for="carIdFind">ID автомобиля</label>
                               <input type="number" class="form-control" id="carIdFind" required>
                           </div>
-                          <button type="submit" class="btn btn-warning">Найти</button>
-                      </form>
+                          <button id="get_car_by_id" class="btn btn-warning">Найти</button>
                   </div>
               </div>
           </div>
+      </div>
+      <div class="row">
+        <div id="car_info" class="d-flex justify-content-center" style="margin-top: 3rem;">
+
+        </div>
       </div>
   </div>
 
@@ -298,7 +305,7 @@
               <div class="card">
                   <div class="card-body">
                       <h5 class="card-title">Найти водителя по Id</h5>
-                          <div class="container">
+                          <div class="form-group">
                               <label for="driverIdFind">ID водителя</label>
                               <input type="number" class="form-control" id="driverIdFind" required>
                           </div>
