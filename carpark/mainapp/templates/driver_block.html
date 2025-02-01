@@ -1,0 +1,108 @@
+  <!-- Раздел "Водители" -->
+  <div class="section">
+    <h2>Водители</h2>
+    <div class="row">
+      <div id="driverMessage"></div>
+
+      <!-- Карточка для добавления водителя -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Добавить водителя</h5>
+            <form id="driver-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="driverName">Имя</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="driverName"
+                  name="driverName"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="driverSurname">Фамилия</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="driverSurname"
+                  name="driverSurname"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="driverDoB">Дата рождения</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="driverDoB"
+                  name="driverDoB"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="driverExp">Стаж</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="driverExp"
+                  name="driverExp"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточка для удаления водителя -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Удалить водителя</h5>
+            {% csrf_token %}
+            <form id="deleteDriverForm">
+              <div class="form-group">
+                <label for="driverIdDelete">ID водителя</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="driverIdDelete"
+                  required
+                />
+              </div>
+              <button id="deleteDriverButton" type="submit" onclick="return confirm('Вы уверены что хотите удалить водителя?')" class="btn btn-danger">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточка для поиска водителя по Id -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Найти водителя по Id</h5>
+            <div class="form-group">
+              <label for="driverIdFind">ID водителя</label>
+              <input
+                type="number"
+                class="form-control"
+                id="driverIdFind"
+                required
+              />
+            </div>
+            <button id="get_driver_by_id" class="btn btn-warning">Найти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        id="driver_info"
+        class="d-flex justify-content-center"
+        style="margin-top: 3rem"
+      ></div>
+    </div>
+  </div>

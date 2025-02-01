@@ -1,0 +1,111 @@
+<!-- Раздел "Автомобили" -->
+<div class="section">
+    <h2>Автомобили</h2>
+    <div class="row">
+      <div id="carMessage"></div>
+
+      <!-- Карточка для добавления автомобиля -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Добавить автомобиль</h5>
+            <form id="car-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="carBrand">Марка</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carMake"
+                  name="carMake"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="carModel">Модель</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carModelName"
+                  name="carModelName"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="carYear">Год выпуска</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="carYear"
+                  name="carYear"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="carMileage">Пробег, км</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="carMileage"
+                  name="carMileage"
+                  required
+                  step="0.1"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script>
+        // ТУТА add car
+      </script>
+
+      <!-- Карточка для удаления автомобиля -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Удалить автомобиль</h5>
+            <form id="deleteCarForm">
+              <div class="form-group">
+                <label for="carIdDelete">ID автомобиля</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="carIdDelete"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточка для поиска автомобиля по Id -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Найти автомобиль по Id</h5>
+            <div class="form-group">
+              <label for="carIdFind">ID автомобиля</label>
+              <input
+                type="number"
+                class="form-control"
+                id="carIdFind"
+                required
+              />
+            </div>
+            <button id="get_car_by_id" class="btn btn-warning">Найти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        id="car_info"
+        class="d-flex justify-content-center"
+        style="margin-top: 3rem"
+      ></div>
+    </div>
+  </div>
