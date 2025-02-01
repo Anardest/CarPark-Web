@@ -142,3 +142,14 @@ def get_car_by_id(request, car_id):
             'trip_count': trip_count,
         }
         return JsonResponse(data)
+
+def delete_driver(request, driver_id):
+    if request.method == 'POST':
+        try:
+            driver = get_object_or_404(Driver, id=driver_id)
+            driver.delete()
+            return JsonResponse({'message': 'Водитель успешно удалён!'})
+        except ValidationError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'Ошибка сервера: ' + str(e)}, status=500)
